@@ -55,16 +55,24 @@ On ghex we can see the original corrupted magic number was `89 53 4B 52` which r
 ![](Pasted%20image%2020260605122001.png)
 ![](Pasted%20image%2020260605082446.png)
 
+<img width="1618" height="1244" alt="41326" src="https://github.com/user-attachments/assets/79397053-d43b-40ac-ab65-9cb77ae7e936" />
+
 We then save the file using the save button on the top right of ghex.
 
-![](Pasted%20image%2020260605122121.png)
+<img width="1554" height="116" alt="57386" src="https://github.com/user-attachments/assets/95ec53d7-cfe9-4826-976e-86bebf5a5b87" />
+
 
 ## Retrieving the Flag
 We open the modified corruptedFile.
 
+<img width="524" height="114" alt="66189" src="https://github.com/user-attachments/assets/d413366f-6f23-4cba-adce-c7a068c6ee9e" />
+
 ![](Pasted%20image%2020260605083303.png)
 
 The file now shows a PNG of a poem by SKR. Based on the SKR CTF flag format `SKR{flag_inside_here}` we know the flag is hidden somewhere in the poem. Reading carefully we notice some letters are randomly capitalised such as the R in Rainbow and E in hEllo — collecting these in order gives us the flag.
+
+<img width="3364" height="1530" alt="48627" src="https://github.com/user-attachments/assets/0355e30c-fdc3-46eb-96ed-e97d177388b9" />
+
 
 ![](Pasted%20image%2020260605083216.png)
 
