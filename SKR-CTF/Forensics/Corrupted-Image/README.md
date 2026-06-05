@@ -23,7 +23,13 @@ After downloading the corruptedFile from the challenge, running the file and exi
 ## Identifying the File Type
 Running the xxd command on the corruptedFile with the head and tail pipes shows us the topmost and bottommost bytes of the file. At the end of the tail we can see **IEND**.
 
-![](Pasted%20image%2020260605121120.png)
+<img width="575" height="428" alt="image" src="https://github.com/user-attachments/assets/d2c33fce-335f-4aa5-b528-a58332f0349a" />
+
+Looking at the head we can see the magic number at the start reads as `.SKR` and the tail shows **IEND** at the very end.
+
+
+<img width="744" height="271" alt="image" src="https://github.com/user-attachments/assets/2abb4c16-672c-4ede-874b-5ddd7fc5df33" />
+
 
 IEND marks the end of a PNG file, which indicates that this file was originally a PNG. However looking at the head pipe we can see the magic number at the start reads as "SKR" which is not a valid file format. This means the original file has been tampered with and our job is to reverse that tampering to retrieve the flag.
 
@@ -39,9 +45,9 @@ ghex is a GUI based hex editor which makes editing magic numbers easier. It disp
 ![](Pasted%20image%2020260605121459.png)
 
 Running ghex on the corruptedFile opens a window we can interact with. Following a Google search we can confirm the correct PNG magic number in hexadecimal is `89 50 4E 47 0D 0A 1A 0A`.
+<img width="1748" height="1006" alt="image" src="https://github.com/user-attachments/assets/e5a29b88-c32f-4c77-a00f-253d761c4d59" />
 
-![](Pasted%20image%2020260605082523.png)
-![](Pasted%20image%2020260605121748.png)
+
 
 On ghex we can see the original corrupted magic number was `89 53 4B 52` which reads as `.SKR` on the right side. We can see that `0D 0A 1A 0A` are already correct, so we only need to change `53 4B 52` (SKR) to `50 4E 47` (PNG), restoring the full correct PNG magic number `89 50 4E 47 0D 0A 1A 0A`.
 
