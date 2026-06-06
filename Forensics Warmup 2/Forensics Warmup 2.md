@@ -20,8 +20,7 @@ EXIF (Exchangeable Image File Format) is metadata that is stored inside image fi
 
 ## Downloading the File
 When clicking the download link, we are redirected to a webpage with an image that says SAFETY.
-
-![](safety.png)
+![alt text](image-1.png)
 
 ## Retrieving the Flag
 After downloading the safety image onto our system, we could use the **exiftool** command followed by the file name in order to get the output that could give us the flag.
