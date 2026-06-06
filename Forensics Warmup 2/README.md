@@ -28,8 +28,5 @@ After downloading the safety image onto our system, we could use the **exiftool*
 ![](image.png)
 
 As we can see from the output of the exiftool command, the flag is visible and appears in the Artist field of the metadata.
-
-![](13576.png)
-
 ## Flag
 **SKR{Art15t_1n_1M@g3s}**
