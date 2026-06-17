@@ -1,36 +1,67 @@
-Notes before starting: There is a method to get the flag and it is to simply install the "file" file and simply open it in the terminal, but that is the simple and quick way to get the flag and if that is what you are looking for, the flag is all the way at the end of the writuep, however if you are looking for what i am assuming is the "intended method" to solving this challenge, you could follow the writeup down below :)
+# File Signature 2 — SKR CTF (Forensics)
 
+## Quick Note Before Starting
 
-For this challenge we are not given any hints whatsoever but we can get enough information as to what is required to be done from the challenge name which is called "File signature 2" 
-<img width="497" height="470" alt="image" src="https://github.com/user-attachments/assets/4497a1c5-4a43-4732-b89f-742cae8ba783" />
+There's a fast way to get the flag: install the `file` file given to you and simply open it in the terminal. If that's all you're looking for, the flag is at the very end of this writeup.
 
-This indicates to us that we would be dealing with a file's signature in order to obtain the flag
+If you're interested in what is likely the **intended method** for solving this challenge, follow the writeup below :D
 
-Installing the file given to us simply downloads a file called "file" with no extensions, i.e no .jpeg / .pdf / .csv and is simply just a file.
+## Challenge
 
-We then would try inspecting the file signature as to see if we can find any useful information, using the xxd command.  What is xxd ?
+We're given no hints, but the challenge name itself **"File Signature"** tells us a lot. It strongly suggests this challenge revolves around inspecting a file's signature to obtain the flag.
 
-"xxd file | head" and we use the head pipe filter in order to only get the top 10 ASCII lines of the files signature in order to find what the file type may be 
-<img width="1278" height="540" alt="3085" src="https://github.com/user-attachments/assets/1dfa38e9-7137-4be0-a5dc-f6866a0bc4d6" />
+<img width="497" height="470" alt="Challenge description" src="https://github.com/user-attachments/assets/4497a1c5-4a43-4732-b89f-742cae8ba783" />
 
-**Insert picture of what file signature is and why the first lines are the most importnat.**
+## Step 1: Inspect the File
 
-from the command we entered above we could see that JFIF exists on the ASCII convertable, and with a quick google search as to what file type JFIF is we could find that it is another way of writing / uploading JPEG files
+The file we're given is simply named `file`, with no extension — no `.jpeg`, `.pdf`, `.csv`, nothing. Just `file`.
 
-<img width="1924" height="750" alt="1981" src="https://github.com/user-attachments/assets/38de6590-0217-4324-9ab8-faaf08c3815a" />
+To figure out what we're actually dealing with, we inspect its file signature using `xxd`.
 
+> **What is `xxd`?** It's a command-line tool that displays a file's raw contents in hexadecimal and ASCII format, which is useful for identifying file types based on their signature ("magic bytes") rather than relying on the extension.
 
-with this information we then know that the original "file" had a .jpeg extension. 
+```bash
+xxd file | head
+```
 
-With that information we could then insert the command "cp file file.jpeg" in order to copy the original file and attach the .jpeg file format to it 
-<img width="650" height="106" alt="55394" src="https://github.com/user-attachments/assets/07f01c64-c1e3-4943-adc6-5371ebf0a2b9" />
+We pipe the output through `head` to limit it to the first 10 lines, since a file's signature/magic bytes appear at the very beginning of the file and are the most relevant for identification.
 
+<img width="1278" height="540" alt="xxd output showing file signature" src="https://github.com/user-attachments/assets/1dfa38e9-7137-4be0-a5dc-f6866a0bc4d6" />
 
- with that we could then open the "file.jpeg" file and view the contents inside of it 
-  <img width="3404" height="1718" alt="81049" src="https://github.com/user-attachments/assets/e80f59ae-60a3-4004-8370-df1de3c63e86" />
+## Step 2: Identify the File Type
 
-inside of the "file.jpeg" image we could see that the flag is there, however it is mirrored, which is why we would need to use an online image rotator such as this one (LINK) and simply rotate the image which would give us the flag as we can see below
+In the ASCII column of the output, we can spot the string **JFIF**. A quick search reveals that JFIF (JPEG File Interchange Format) is simply another standard associated with JPEG images.
 
-<img width="1934" height="1058" alt="53381" src="https://github.com/user-attachments/assets/17d2eb2d-fbd4-4ab7-b33c-a4f9b403be6d" />
+<img width="1924" height="750" alt="Search result explaining JFIF is associated with JPEG" src="https://github.com/user-attachments/assets/38de6590-0217-4324-9ab8-faaf08c3815a" />
 
-flag: **SKR{fil3_sign4tur3_1s_1mp0rt4nt}**
+This tells us the original `file` is actually a `.jpeg` image.
+
+## Step 3: Restore the File Extension
+
+Now that we know the correct file type, we copy the file and give it the proper `.jpeg` extension so it can be opened as an image:
+
+```bash
+cp file file.jpeg
+```
+
+<img width="650" height="106" alt="cp command renaming file to file.jpeg" src="https://github.com/user-attachments/assets/07f01c64-c1e3-4943-adc6-5371ebf0a2b9" />
+
+## Step 4: Open and Inspect the Image
+
+With the extension restored, we can now open `file.jpeg` and view its contents.
+
+<img width="3404" height="1718" alt="Opened file.jpeg showing mirrored flag text" src="https://github.com/user-attachments/assets/e80f59ae-60a3-4004-8370-df1de3c63e86" />
+
+The flag is visible in the image — but it's mirrored.
+
+## Step 5: Unmirror the Image
+
+To fix this, we run the image through an online image rotator/flipper tool ([LINK]([url](https://www.img2go.com/rotate-image))) to flip it back into readable text.
+
+<img width="1934" height="1058" alt="Flipped image revealing the readable flag" src="https://github.com/user-attachments/assets/17d2eb2d-fbd4-4ab7-b33c-a4f9b403be6d" />
+
+## Flag
+
+```
+SKR{fil3_sign4tur3_1s_1mp0rt4nt}
+```
