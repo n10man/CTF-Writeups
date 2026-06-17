@@ -1,4 +1,4 @@
-# File Signature 2 — SKR CTF (Forensics)
+# File Signature — SKR CTF (Forensics)
 
 ## Quick Note Before Starting
 
