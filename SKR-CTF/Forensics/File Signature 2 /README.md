@@ -56,7 +56,7 @@ The flag is visible in the image — but it's mirrored.
 
 ## Step 5: Unmirror the Image
 
-To fix this, we run the image through an online image rotator/flipper tool ([LINK]([url](https://www.img2go.com/rotate-image))) to flip it back into readable text.
+To fix this, we run the image through an online image rotator/flipper tool [Rotate Image Tool](https://www.img2go.com/rotate-image) to flip it back into readable text.
 
 <img width="1934" height="1058" alt="Flipped image revealing the readable flag" src="https://github.com/user-attachments/assets/17d2eb2d-fbd4-4ab7-b33c-a4f9b403be6d" />
 
